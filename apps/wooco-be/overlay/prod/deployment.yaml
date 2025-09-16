@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wooco-spring
+  namespace: wooco-spring
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wooco-spring-app
+  template:
+    metadata:
+      labels:
+        app: wooco-spring-app
+    spec:
+      containers:
+        - name: wooco-spring-container
+          image: hongserver/wooco:honghong
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: registry-cred
